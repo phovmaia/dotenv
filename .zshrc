@@ -51,7 +51,8 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -82,7 +83,7 @@ plugins=(
         docker-compose
         aws
         asdf
-	terraform
+        terraform
         )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -112,17 +114,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias c="clear"
-alias omzr="omz reload"
-
-# This loads nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-source /home/maryjane/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Goto
-[[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
+# [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
 
 # NVM lazy load
 if [ -s "$HOME/.nvm/nvm.sh" ]; then
@@ -168,15 +161,23 @@ function colormap() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
+alias c="clear"
+alias omzr="omz reload"
 # ALIAS COMMANDS
-alias g="goto"
+alias ls="exa --icons --group-directories-first"
+alias ll="exa --icons --group-directories-first -l"
+# alias g="goto"
 alias grep='grep --color'
 
+# CREATE MY OWN WORSPACE ALIASES
+# alias cbp="code /home/xcad/obsidianvault/boilerplates"
+# alias cpr="code /home/xcad/obsidianvault/projects"
+
 # find out which distribution we are running on
-LFILE="/etc/*-release"
+LFILE="/etc/os-release"
 MFILE="/System/Library/CoreServices/SystemVersion.plist"
 if [[ -f $LFILE ]]; then
-  _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
+  _distro=$(awk '/^ID=/' /etc/os-release | awk -F'=' '{ print tolower($2) }')
 elif [[ -f $MFILE ]]; then
   _distro="macos"
 fi
@@ -213,4 +214,5 @@ export STARSHIP_DISTRO="$ICON"
 
 # Load Starship
 eval "$(starship init zsh)"
-
+source /home/bobmarley/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/bobmarley/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
