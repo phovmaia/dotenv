@@ -84,6 +84,8 @@ plugins=(
         aws
         asdf
         terraform
+	golang
+	poetry
         )
 
 source $ZSH/oh-my-zsh.sh
@@ -215,4 +217,4 @@ export STARSHIP_DISTRO="$ICON"
 # Load Starship
 eval "$(starship init zsh)"
 source /home/bobmarley/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/bobmarley/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH=$PATH:/usr/local/go/bin
