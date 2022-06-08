@@ -2,13 +2,17 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set theme here but using spaceship I don't care xD
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
 
 # Plugins for zsh
 plugins=(
         git
+        git-flow
+        octozen
         gh
+        github
         npm
+        ufw
         nvm
         node
         yarn
@@ -17,10 +21,12 @@ plugins=(
         docker
         docker-compose
         aws
+        nmap
         asdf
         terraform
-	golang
+        golang
 	poetry
+        zsh-syntax-highlighting
         )
 
 source $ZSH/oh-my-zsh.sh
@@ -73,7 +79,13 @@ function colormap() {
 
 # SIMPLE ALIAS
 alias c="clear"
+
 alias omzr="omz reload"
+alias omzup="omz update"
+
+alias cws="cd ~/workspace/"
+
+alias awscfg="aws configure"
 
 # ALIAS COMMANDS
 alias ls="exa --icons --group-directories-first"
@@ -81,9 +93,6 @@ alias ll="exa --icons --group-directories-first -l"
 
 # alias g="goto"
 alias grep='grep --color'
-
-# CREATE MY OWN WORSPACE ALIASES
-alias cws="cd ~/workspace/"
 
 # find out which distribution we are running on
 LFILE="/etc/os-release"
@@ -124,7 +133,4 @@ esac
 
 export STARSHIP_DISTRO="$ICON"
 
-# Load Starship
 eval "$(starship init zsh)"
-source /home/bobmarley/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export PATH=$PATH:/usr/local/go/bin
