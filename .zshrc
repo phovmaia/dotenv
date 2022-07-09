@@ -2,35 +2,42 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set theme here but using spaceship I don't care xD
-ZSH_THEME="spaceship"
+ZSH_THEME="robbyrussell"
 
 # Plugins for zsh
 plugins=(
+	web-search
+        macos
+	colorize
         git
         git-flow
-        octozen
         gh
         github
-        npm
-        ufw
-        nvm
-        node
-        yarn
         vscode
-        zsh-autosuggestions
-        docker
-        docker-compose
+        ufw
+        brew
         aws
         nmap
         asdf
+        helm
+        kubectl
+	kubectx
         terraform
+        docker
+        docker-compose
+        docker-machine
+        npm
+        yarn
+        nvm
+        node
         golang
-	poetry
-        zsh-syntax-highlighting
+        poetry
+        pip
         )
 
 source $ZSH/oh-my-zsh.sh
-
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Goto
 # [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
@@ -42,7 +49,6 @@ if [ -s "$HOME/.nvm/nvm.sh" ]; then
   alias node='unalias nvm node npm && . "$NVM_DIR"/nvm.sh && node'
   alias npm='unalias nvm node npm && . "$NVM_DIR"/nvm.sh && npm'
 fi
-
 # Fix Interop Error that randomly occurs in vscode terminal when using WSL2
 fix_wsl2_interop() {
     for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
@@ -55,15 +61,17 @@ fix_wsl2_interop() {
 # Kubectl Functions
 alias k="kubectl"
 alias h="helm"
+alias dk="docker"
+alias dkc="docker-compose"
+alias b="brew"
 
 kn() {
     if [ "$1" != "" ]; then
-	    kubectl config set-context --current --namespace=$1
+            kubectl config set-context --current --namespace=$1
     else
-	    echo -e "\e[1;31m Error, please provide a valid Namespace\e[0m"
+            echo -e "\e[1;31m Error, please provide a valid Namespace\e[0m"
     fi
 }
-
 knd() {
     kubectl config set-context --current --namespace=default
 }
@@ -77,15 +85,23 @@ function colormap() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
-# SIMPLE ALIAS
+# SIMPLE ALIASES
 alias c="clear"
-
 alias omzr="omz reload"
-alias omzup="omz update"
 
-alias cws="cd ~/workspace/"
+alias ws="cd ~/workspace/"
+alias wss="cd ~/workspace/study/"
+alias wst="cd ~/workspace/templates/"
+alias wsr="cd ~/workspace/repos/"
+alias wsp="cd ~/workspace/phovmaia-gh/"
+alias wsd="cd ~/workspace/darede"
+alias wsj="cd ~/workspace/jobs/"
 
-alias awscfg="aws configure"
+# LEAPP ALIASES
+alias lpp="leapp"
+alias lpsa="leapp session start"
+alias lpso="leapp session stop"
+alias lpsls="leapp session list"
 
 # ALIAS COMMANDS
 alias ls="exa --icons --group-directories-first"
